@@ -4,7 +4,6 @@ Writing about Data and the Web
 
 ## Tech Stack
 
-- Astro
-- Tailwind
+- Astro for static site generation
 - Vercel for deployment
 - MDX for Markdown support
