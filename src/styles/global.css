@@ -78,9 +78,9 @@ img {
 	height: auto;
 }
 
-.blog-list {
+.blog-list li {
 	list-style: none;
-	padding: 5px 5px;
+	padding: 10px 10px;
 	margin: 1rem 0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
@@ -100,11 +100,13 @@ pre>code {
 }
 
 blockquote {
-	border: 1px solid #999;
+	border-left: 2px solid rgb(35, 175, 126);
 	color: #222;
 	padding: 2px 0px 2px 20px;
-	margin: 0px;
 	font-style: italic;
+	background-color: #eeeeee4c;
+	border-radius: 5px;
+	margin: 1rem 0;
 }
 
 @media (max-width: 767px) {

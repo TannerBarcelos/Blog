@@ -5,9 +5,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
 import FormattedDate from '../../components/FormattedDate.astro'
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
-)
+const webDevPosts = (await getCollection('blog'))
+  .filter((post) => {
+    if (post.slug.startsWith('web')) return post
+  })
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+
+const bigDataPosts = (await getCollection('blog'))
+  .filter((post) => {
+    if (post.slug.startsWith('bigdata')) return post
+  })
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+
+const databasesPosts = (await getCollection('blog'))
+  .filter((post) => {
+    if (post.slug.startsWith('databases')) return post
+  })
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
 ---
 
 <!DOCTYPE html>
@@ -22,7 +36,6 @@ const posts = (await getCollection('blog')).sort(
       ul li {
         display: flex;
         align-items: center;
-        /* justify-content: space-around; */
         padding: 0 1rem;
       }
       ul li :global(time) {
@@ -34,22 +47,65 @@ const posts = (await getCollection('blog')).sort(
         color: rgb(35, 175, 126);
         font-weight: bolder;
       }
+
+      h1 {
+        margin-top: 3rem;
+      }
     </style>
   </head>
   <body>
     <Header />
     <main class='blog-list'>
       <section>
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <FormattedDate date={post.data.pubDate} />
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-              </li>
-            ))
-          }
-        </ul>
+        <h1>Web Development</h1>
+        {
+          webDevPosts.length ? (
+            <ul>
+              {webDevPosts.map((post) => (
+                <li>
+                  <FormattedDate date={post.data.pubDate} />
+                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
+          )
+        }
+      </section>
+      <section>
+        <h1>Big Data</h1>
+        {
+          bigDataPosts.length ? (
+            <ul>
+              {bigDataPosts.map((post) => (
+                <li>
+                  <FormattedDate date={post.data.pubDate} />
+                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
+          )
+        }
+      </section>
+      <section>
+        <h1>Databases</h1>
+        {
+          databasesPosts.length ? (
+            <ul>
+              {databasesPosts.map((post) => (
+                <li>
+                  <FormattedDate date={post.data.pubDate} />
+                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
+          )
+        }
       </section>
     </main>
   </body>
