@@ -1,8 +1,9 @@
 ---
-title: 'What is Svelte? | Svelte Saturdays Ep. 0'
+title: 'What is Svelte?'
 description: 'Introduction to the Svelte framework and why it is a great alternative to other industry standard UI frameworks'
 pubDate: 'Jul 14 2023'
 heroImage: '/blog_images/svelte.webp'
+tags: ['svelte', 'javascript', 'frontend', 'frameworks']
 ---
 
 ## Why Svelte over other industry standard UI frameworks?

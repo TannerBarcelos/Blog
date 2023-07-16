@@ -21,20 +21,24 @@ const posts = (await getCollection('blog')).sort(
       }
       ul li {
         display: flex;
+        align-items: center;
+        /* justify-content: space-around; */
+        padding: 0 1rem;
       }
       ul li :global(time) {
         flex: 0 0 130px;
         font-style: italic;
         color: #595959;
       }
-      ul li a:visited {
-        color: #8e32dc;
+      ul li a {
+        color: rgb(35, 175, 126);
+        font-weight: bolder;
       }
     </style>
   </head>
   <body>
     <Header />
-    <main>
+    <main class='blog-list'>
       <section>
         <ul>
           {

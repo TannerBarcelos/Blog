@@ -4,16 +4,16 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 body {
-	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-family: 'Raleway', sans-serif;
 	margin: auto;
 	padding: 20px;
-	max-width: 58vw;
+	max-width: 1000px;
 	text-align: left;
 	background-color: #fff;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	line-height: 1.5;
-	color: #272727;
+	color: #424242;
 }
 
 h1,
@@ -27,13 +27,34 @@ b {
 	color: #222;
 }
 
+h1 {
+	font-weight: bolder;
+}
+
 a {
-	color: #3273dc;
+	color: rgb(35, 175, 126);
+	text-decoration: none !important;
+}
+
+nav {
+	margin: 0em 0 2em;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 30px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 10px 20px;
+	width: 180px;
 }
 
 nav a {
-	margin-right: 10px;
+	font-weight: lighter;
 }
+
+nav a:checked {
+	font-weight: bolder;
+}
+
 
 textarea {
 	width: 100%;
@@ -57,6 +78,14 @@ img {
 	height: auto;
 }
 
+.blog-list {
+	list-style: none;
+	padding: 5px 5px;
+	margin: 1rem 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
 code {
 	padding: 2px 5px;
 	background-color: #f2f2f2;
@@ -76,4 +105,15 @@ blockquote {
 	padding: 2px 0px 2px 20px;
 	margin: 0px;
 	font-style: italic;
+}
+
+@media (max-width: 767px) {
+	body {
+		padding: 10px;
+		max-width: 85%;
+	}
+
+	nav {
+		margin-top: 1rem;
+	}
 }
