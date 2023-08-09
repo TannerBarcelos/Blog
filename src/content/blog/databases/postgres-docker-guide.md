@@ -1,5 +1,6 @@
 ---
 title: 'How to Install and Run PostgreSQL in Docker'
+topic: 'Databases'
 description: 'A guide on how to install and run PostgreSQL in Docker containers'
 pubDate: 'Jul 16 2023'
 heroImage: '/blog_images/databases/pg_docker.webp'

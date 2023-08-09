@@ -1,5 +1,6 @@
 ---
 title: 'What is Svelte?'
+topic: 'Web Development'
 description: 'Introduction to the Svelte framework and why it is a great alternative to other industry standard UI frameworks'
 pubDate: 'Jul 14 2023'
 heroImage: '/blog_images/web/svelte.webp'

@@ -5,23 +5,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
 import FormattedDate from '../../components/FormattedDate.astro'
 
-const webDevPosts = (await getCollection('blog'))
-  .filter((post) => {
-    if (post.slug.startsWith('web')) return post
-  })
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+// Get all blog posts
+const blogPosts = (await getCollection('blog')).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+)
 
-const bigDataPosts = (await getCollection('blog'))
-  .filter((post) => {
-    if (post.slug.startsWith('bigdata')) return post
-  })
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-
-const databasesPosts = (await getCollection('blog'))
-  .filter((post) => {
-    if (post.slug.startsWith('databases')) return post
-  })
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+// Get all topics from blog posts to create a list of topics to use as headers for each section in the markup
+const topics = blogPosts.map((post) => post.data.topic)
 ---
 
 <!DOCTYPE html>
@@ -56,57 +46,24 @@ const databasesPosts = (await getCollection('blog'))
   <body>
     <Header />
     <main class='blog-list'>
-      <section>
-        <h1>Web Development</h1>
-        {
-          webDevPosts.length ? (
+      <!-- For every topic, create a new section and then output every blogpost for that topic. -->
+      {
+        topics.map((topic) => (
+          <section>
+            <h1>{topic}</h1>
             <ul>
-              {webDevPosts.map((post) => (
-                <li>
-                  <FormattedDate date={post.data.pubDate} />
-                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-                </li>
-              ))}
+              {blogPosts
+                .filter((post) => post.data.topic === topic)
+                .map((post) => (
+                  <li>
+                    <FormattedDate date={post.data.pubDate} />
+                    <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                  </li>
+                ))}
             </ul>
-          ) : (
-            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
-          )
-        }
-      </section>
-      <section>
-        <h1>Big Data</h1>
-        {
-          bigDataPosts.length ? (
-            <ul>
-              {bigDataPosts.map((post) => (
-                <li>
-                  <FormattedDate date={post.data.pubDate} />
-                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
-          )
-        }
-      </section>
-      <section>
-        <h1>Databases</h1>
-        {
-          databasesPosts.length ? (
-            <ul>
-              {databasesPosts.map((post) => (
-                <li>
-                  <FormattedDate date={post.data.pubDate} />
-                  <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p style='color: rgb(149, 149, 149);'>Nothing to show</p>
-          )
-        }
-      </section>
+          </section>
+        ))
+      }
     </main>
   </body>
 </html>
