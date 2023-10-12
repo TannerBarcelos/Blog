@@ -4,14 +4,15 @@ import Header from '../../components/Header.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
 import { getCollection } from 'astro:content'
 import FormattedDate from '../../components/FormattedDate.astro'
+import toUnique from '../../utils/toUnique.js'
 
-// Get all blog posts
-const blogPosts = (await getCollection('blog')).sort(
+const blogCollection = await getCollection('blog')
+const blogPosts = blogCollection.sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 )
 
-// Get all topics from blog posts to create a list of topics to use as headers for each section in the markup
-const topics = blogPosts.map((post) => post.data.topic)
+// Get all the topics from the blog posts and remove duplicates. (This allows us to create a section for each topic.)
+const topics = toUnique(blogPosts.map((post) => post.data.topic))
 ---
 
 <!DOCTYPE html>
