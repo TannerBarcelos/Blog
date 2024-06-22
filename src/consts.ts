@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'Tanner Barcelos'
 export const SITE_DESCRIPTION =
-  'Welcome to my blog! I write about web development, software engineering, big data, and more.'
+  'Welcome to my blog! I write about Web Development, Software Engineering and other topics that interest me.'
